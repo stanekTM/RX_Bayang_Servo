@@ -41,13 +41,12 @@ uint32_t process_Bayang()
 //************************************************************************************************************************************************************************
 void Bayang_init()
 {
-  const uint8_t bind_address[] = {0, 0, 0, 0, 0};
-//  const uint8_t bind_address[BAYANG_ADDRESS_LENGTH] = {0, 0, 0, 0, 0}; //goebish
+  const uint8_t bind_address[BAYANG_ADDRESS_LENGTH] = {0, 0, 0, 0, 0};
   
   uint8_t i;
   for(i=0; i < BAYANG_ADDRESS_LENGTH; i++)
   {
-    Bayang_rx_tx_addr[i] = random() & 0xff;
+    Bayang_rx_tx_addr[i] = random() & 0xFF;
   }
   
   Bayang_rf_channels[0] = 0x00;
@@ -61,7 +60,7 @@ void Bayang_init()
     //pevná adresa goebish
     const uint8_t bind_address[] = {0, 0, 0, 0, 0};
     memcpy(Bayang_rx_tx_addr, transmitterID, 4);
-    Bayang_rx_tx_addr[4] = Bayang_rx_tx_addr[0] ^ 0xff;
+    Bayang_rx_tx_addr[4] = Bayang_rx_tx_addr[0] ^ 0xFF;
     Bayang_rf_channels[0] = 0x00;
     uint8_t i;
     for(i=1; i<BAYANG_RF_NUM_CHANNELS; i++)
