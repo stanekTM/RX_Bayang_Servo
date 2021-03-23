@@ -10,6 +10,11 @@
 
 Servo servo1, servo2, servo3, servo4;
 
+#define RF_POWER TX_POWER_5mW
+//#define RF_POWER TX_POWER_20mW
+//#define RF_POWER TX_POWER_80mW 
+//#define RF_POWER TX_POWER_158mW
+
 //free pins
 //pin                       0
 //pin                       1
@@ -53,11 +58,6 @@ Servo servo1, servo2, servo3, servo4;
 // SPI input
 #define  MISO_on (PINC & _BV(4))  //PC4
 
-//#define RF_POWER TX_POWER_5mW
-#define RF_POWER TX_POWER_20mW
-//#define RF_POWER TX_POWER_80mW 
-//#define RF_POWER TX_POWER_158mW
-
 uint8_t transmitterID[4];
 uint8_t packet[32];
 static bool reset = true;
@@ -68,7 +68,7 @@ static bool reset = true;
 void setup()
 {
 //  Serial.begin(115200); //print value ​​on a serial monitor
-  Serial.println("Start");
+//  Serial.println("Start");
 
   pinMode(pin_LED, OUTPUT);
   digitalWrite(pin_LED, LOW); //start LED off
@@ -113,4 +113,4 @@ void loop()
   // wait before sending next packet
   while(micros() < timeout);
 }
-  
+ 

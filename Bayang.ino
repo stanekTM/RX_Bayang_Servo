@@ -44,9 +44,9 @@ void Bayang_init()
   const uint8_t bind_address[BAYANG_ADDRESS_LENGTH] = {0, 0, 0, 0, 0};
   
   uint8_t i;
-  for(i=0; i < BAYANG_ADDRESS_LENGTH; i++)
+  for(i = 0; i < BAYANG_ADDRESS_LENGTH; i++)
   {
-    Bayang_rx_tx_addr[i] = random() & 0xFF;
+    Bayang_rx_tx_addr[i] = random() & 0xff;
   }
   
   Bayang_rf_channels[0] = 0x00;
@@ -63,7 +63,7 @@ void Bayang_init()
     Bayang_rx_tx_addr[4] = Bayang_rx_tx_addr[0] ^ 0xFF;
     Bayang_rf_channels[0] = 0x00;
     uint8_t i;
-    for(i=1; i<BAYANG_RF_NUM_CHANNELS; i++)
+    for(i = 1; i < BAYANG_RF_NUM_CHANNELS; i++)
     {
       Bayang_rf_channels[i] = transmitterID[i] % 0x42;
     }

@@ -50,7 +50,7 @@ uint8_t spi_write(uint8_t command)
     return result;
 }
 
-void spi_write_address(uint8_t address, uint8_t data) 
+void spi_write_address(uint8_t address, uint8_t data)
 {
     CS_off;
     spi_write(address);
