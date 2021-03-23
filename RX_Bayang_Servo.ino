@@ -25,10 +25,10 @@ Servo servo1, servo2, servo3, servo4;
 //pin                       A6
 //pin                       A7
 
-#define pin_button_flip     10
-#define pin_button_return   11
-#define pin_button_headless 12
-#define pin_button_invert   13
+#define pin_output_flip     10
+#define pin_output_rth      11
+#define pin_output_headless 12
+#define pin_output_invert   13
 
 //pins for servos
 #define pin_servo1          3
@@ -79,10 +79,10 @@ void setup()
   pinMode(pin_MOSI, OUTPUT);
   pinMode(pin_MISO, INPUT);
   
-  pinMode(pin_button_flip, OUTPUT);
-  pinMode(pin_button_return, OUTPUT);
-  pinMode(pin_button_headless, OUTPUT);
-  pinMode(pin_button_invert, OUTPUT);  
+  pinMode(pin_output_flip, OUTPUT);
+  pinMode(pin_output_rth, OUTPUT);
+  pinMode(pin_output_headless, OUTPUT);
+  pinMode(pin_output_invert, OUTPUT);  
   
   servo1.attach(pin_servo1);
 	servo2.attach(pin_servo2);

@@ -171,19 +171,18 @@ void Bayang_receive_packet()
     
     int sum = 0;
     
-    uint16_t aileron, elevator, rudder, throttle, output1, output2, output3, output4;
+    uint16_t aileron, elevator, rudder, throttle, flip, rth, headless, invert;
     
     XN297_ReadPayload(packet, BAYANG_PACKET_SIZE);
     
     if (packet[0] == 0xA4) //0xA4, 0xA3 telemetry
     {
-      // bind packet
       Serial.println("bind packet");
     }
     else if (packet[0] == 0xA5) //0xA5
     {
       // data packet
-      for(int i = 0; i < 14; i++)
+      for (int i = 0; i < 14; i++)
       {
         sum += packet[i];
       }
@@ -195,19 +194,19 @@ void Bayang_receive_packet()
         elevator = (packet[6]  & 0x0003) * 256 + packet[7];
         rudder   = (packet[10] & 0x0003) * 256 + packet[11];
         throttle = (packet[8]  & 0x0003) * 256 + packet[9];
-        output1  = (packet[2]  & 0x08);
-        output2  = (packet[2]  & 0x01);
-        output3  = (packet[2]  & 0x02);
-        output4  = (packet[3]  & 0x80);
+        flip     = (packet[2]  & 0x08);
+        rth      = (packet[2]  & 0x01);
+        headless = (packet[2]  & 0x02);
+        invert   = (packet[3]  & 0x80);
         
 //        Serial.println(aileron,  DEC);
 //        Serial.println(elevator, DEC);
 //        Serial.println(rudder,   DEC);
 //        Serial.println(throttle, DEC);
-//        Serial.println(output1,  DEC);
-//        Serial.println(output2,  DEC);
-//        Serial.println(output3,  DEC);
-//        Serial.println(output4,  DEC);
+//        Serial.println(flip,     DEC);
+//        Serial.println(rth,      DEC);
+//        Serial.println(headless, DEC);
+//        Serial.println(invert,   DEC);
 
         int value_servo1 = 0, value_servo2 = 0, value_servo3 = 0, value_servo4 = 0;
         
@@ -221,14 +220,13 @@ void Bayang_receive_packet()
         servo3.writeMicroseconds(value_servo3);
         servo4.writeMicroseconds(value_servo4);
         
-        digitalWrite(pin_button_flip,     output1);
-        digitalWrite(pin_button_return,   output2);
-        digitalWrite(pin_button_headless, output3);
-        digitalWrite(pin_button_invert,   output4);
+        digitalWrite(pin_output_flip,     flip);
+        digitalWrite(pin_output_rth,      rth);
+        digitalWrite(pin_output_headless, headless);
+        digitalWrite(pin_output_invert,   invert);
       }
       else
       {
-        //checksum FAIL
         Serial.println("checksum FAIL");
       }
       NRF24L01_WriteReg(NRF24L01_05_RF_CH, Bayang_rf_channels[Bayang_rf_chan++]);
