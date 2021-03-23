@@ -171,7 +171,7 @@ void Bayang_receive_packet()
     
     int sum = 0;
     
-    uint16_t roll, pitch, yaw, throttle, output1, output2, output3, output4;
+    uint16_t aileron, elevator, rudder, throttle, output1, output2, output3, output4;
     
     XN297_ReadPayload(packet, BAYANG_PACKET_SIZE);
     
@@ -191,18 +191,18 @@ void Bayang_receive_packet()
       if ((sum & 0xFF) == packet[14])
       {
         // checksum OK
-        roll     = (packet[4]  & 0x0003) * 256 + packet[5];
-        pitch    = (packet[6]  & 0x0003) * 256 + packet[7];
-        yaw      = (packet[10] & 0x0003) * 256 + packet[11];
+        aileron  = (packet[4]  & 0x0003) * 256 + packet[5];
+        elevator = (packet[6]  & 0x0003) * 256 + packet[7];
+        rudder   = (packet[10] & 0x0003) * 256 + packet[11];
         throttle = (packet[8]  & 0x0003) * 256 + packet[9];
         output1  = (packet[2]  & 0x08);
         output2  = (packet[2]  & 0x01);
         output3  = (packet[2]  & 0x02);
         output4  = (packet[3]  & 0x80);
         
-//        Serial.println(roll,     DEC);
-//        Serial.println(pitch,    DEC);
-//        Serial.println(yaw,      DEC);
+//        Serial.println(aileron,  DEC);
+//        Serial.println(elevator, DEC);
+//        Serial.println(rudder,   DEC);
 //        Serial.println(throttle, DEC);
 //        Serial.println(output1,  DEC);
 //        Serial.println(output2,  DEC);
@@ -210,9 +210,10 @@ void Bayang_receive_packet()
 //        Serial.println(output4,  DEC);
 
         int value_servo1 = 0, value_servo2 = 0, value_servo3 = 0, value_servo4 = 0;
-        value_servo1 = map(roll,     0, 1023, 1000, 2000);
-        value_servo2 = map(pitch,    0, 1023, 1000, 2000);
-        value_servo3 = map(yaw,      0, 1023, 1000, 2000);
+        
+        value_servo1 = map(aileron,  0, 1023, 1000, 2000);
+        value_servo2 = map(elevator, 0, 1023, 1000, 2000);
+        value_servo3 = map(rudder,   0, 1023, 1000, 2000);
         value_servo4 = map(throttle, 0, 1023, 1000, 2000);
         
         servo1.writeMicroseconds(value_servo1);
