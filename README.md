@@ -3,7 +3,7 @@ Thanks to the original developers "goebish" and "bikemike" https://github.com/bi
 #
 Includes 4x servo and 4x logic outputs.
 
-This RC receiver works with RC transmitters [OpenAVRc](https://github.com/stanekTM/OpenAVRc_Dev) or [Multiprotocol](https://github.com/stanekTM/DIY-Multiprotocol-TX-Module).
+This RC receiver works with RC transmitters [OpenAVRc](https://github.com/stanekTM/OpenAVRc_Dev) or [Multiprotocol](https://github.com/pascallanger/DIY-Multiprotocol-TX-Module).
 
 Note: I use (Arduino) ATmega328P 5V/16Mhz and supply VCC only with 3.3V voltage. 
 I haven't tried the 3.3V/8Mhz version yet.
