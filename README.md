@@ -1,5 +1,5 @@
 # RX Bayang nRF24L01
-Thanks to the original developers "goebish" and "bikemike" https://github.com/bikemike/nrf24_multipro/tree/rx_mode.
+Thanks to the original developers "goebish", "bikemike" and many others ... https://github.com/bikemike/nrf24_multipro/tree/rx_mode.
 #
 Includes 4x servo and 4x logic outputs.
 
