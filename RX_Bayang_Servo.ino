@@ -18,26 +18,27 @@ Servo servo1, servo2, servo3, servo4;
 //free pins
 //pin                       0
 //pin                       1
-//pin                       7
-//pin                       8
-//pin                       9
-//pin                       A5
+//pin                       10
+//pin                       11
+//pin                       12
+//pin                       13
 //pin                       A6
 //pin                       A7
 
-#define pin_output_flip     10
-#define pin_output_rth      11
-#define pin_output_headless 12
-#define pin_output_invert   13
-
 //pins for servos
-#define pin_servo1          3
-#define pin_servo2          4
-#define pin_servo3          5
-#define pin_servo4          6
+#define pin_servo1          2
+#define pin_servo2          3
+#define pin_servo3          4
+#define pin_servo4          5
 
-//LED RX RF on/off
-#define pin_LED             2
+//output pins of buttons
+#define pin_output_flip     6
+#define pin_output_rth      7
+#define pin_output_headless 8
+#define pin_output_invert   9
+
+//pin LED RX on/off
+#define pin_LED             A5
 
 //SPI Comm.pins with nRF24L01
 //#define pin_CE              A0 //comment if you connect the pin CE to 3.3V
