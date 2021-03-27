@@ -190,10 +190,10 @@ void Bayang_receive_packet()
       if ((sum & 0xFF) == packet[14])
       {
         // checksum OK
-        aileron  = (packet[4]  & 0x0003) * 256 + packet[5];
-        elevator = (packet[6]  & 0x0003) * 256 + packet[7];
-        rudder   = (packet[10] & 0x0003) * 256 + packet[11];
-        throttle = (packet[8]  & 0x0003) * 256 + packet[9];
+        aileron  = (packet[4]  & 3) * 256 + packet[5];
+        elevator = (packet[6]  & 3) * 256 + packet[7];
+        rudder   = (packet[10] & 3) * 256 + packet[11];
+        throttle = (packet[8]  & 3) * 256 + packet[9];
         flip     = (packet[2]  & 0x08);
         rth      = (packet[2]  & 0x01);
         headless = (packet[2]  & 0x02);
