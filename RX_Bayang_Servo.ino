@@ -68,7 +68,7 @@ static bool reset = true;
 //************************************************************************************************************************************************************************
 void setup()
 {
-//  Serial.begin(115200); //print value ​​on a serial monitor
+//  Serial.begin(9600); //print value ​​on a serial monitor
   Serial.println("Start");
 
   pinMode(pin_LED, OUTPUT);
