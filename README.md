@@ -8,7 +8,7 @@ This RC receiver works with RC transmitters [OpenAVRc](https://github.com/stanek
 Note: I use (Arduino) ATmega328P 5V/16Mhz and supply VCC only with 3.3V voltage. 
 I haven't tried the 3.3V/8Mhz version yet.
 #
-Later I would like to add [Silverware telemetry](https://github.com/silver13/BoldClash-BWHOOP-B-03).
+Later I would like to add telemetry.
 If you have already added the telemetry, feel free to contact me.
 #
 Jiri StanekTM
