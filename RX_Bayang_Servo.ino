@@ -83,10 +83,10 @@ void setup()
   pinMode(pin_output_flip, OUTPUT);
   pinMode(pin_output_rth, OUTPUT);
   pinMode(pin_output_headless, OUTPUT);
-  pinMode(pin_output_invert, OUTPUT);  
+  pinMode(pin_output_invert, OUTPUT);
   
   servo1.attach(pin_servo1);
-	servo2.attach(pin_servo2);
+  servo2.attach(pin_servo2);
   servo3.attach(pin_servo3);
   servo4.attach(pin_servo4);
 }
