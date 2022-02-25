@@ -44,6 +44,7 @@ void Bayang_init()
   const uint8_t bind_address[BAYANG_ADDRESS_LENGTH] = {0, 0, 0, 0, 0};
   
   uint8_t i;
+  
   for(i = 0; i < BAYANG_ADDRESS_LENGTH; i++)
   {
     Bayang_rx_tx_addr[i] = random() & 0xff;
@@ -57,12 +58,17 @@ void Bayang_init()
   }
 
 /*
-    //pevná adresa goebish
+    //fixed address goebish
     const uint8_t bind_address[] = {0, 0, 0, 0, 0};
+    
     memcpy(Bayang_rx_tx_addr, transmitterID, 4);
+    
     Bayang_rx_tx_addr[4] = Bayang_rx_tx_addr[0] ^ 0xFF;
+    
     Bayang_rf_channels[0] = 0x00;
+    
     uint8_t i;
+    
     for(i = 1; i < BAYANG_RF_NUM_CHANNELS; i++)
     {
       Bayang_rf_channels[i] = transmitterID[i] % 0x42;
@@ -190,19 +196,20 @@ void Bayang_receive_packet()
       if ((sum & 0xFF) == packet[14])
       {
         // checksum OK
-        aileron  = (packet[4]  & 0x0003) * 256 + packet[5];
-        elevator = (packet[6]  & 0x0003) * 256 + packet[7];
-        rudder   = (packet[10] & 0x0003) * 256 + packet[11];
-        throttle = (packet[8]  & 0x0003) * 256 + packet[9];
         flip     = (packet[2]  & 0x08);
         rth      = (packet[2]  & 0x01);
         headless = (packet[2]  & 0x02);
         invert   = (packet[3]  & 0x80);
         
+        aileron  = (packet[4]  & 0x0003) * 256 + packet[5];
+        elevator = (packet[6]  & 0x0003) * 256 + packet[7];
+        throttle = (packet[8]  & 0x0003) * 256 + packet[9];
+        rudder   = (packet[10] & 0x0003) * 256 + packet[11];
+
 //        Serial.println(aileron,  DEC);
 //        Serial.println(elevator, DEC);
-//        Serial.println(rudder,   DEC);
 //        Serial.println(throttle, DEC);
+//        Serial.println(rudder,   DEC);
 //        Serial.println(flip,     DEC);
 //        Serial.println(rth,      DEC);
 //        Serial.println(headless, DEC);
@@ -212,14 +219,14 @@ void Bayang_receive_packet()
         
         value_servo1 = map(aileron,  0, 1023, 1000, 2000);
         value_servo2 = map(elevator, 0, 1023, 1000, 2000);
-        value_servo3 = map(rudder,   0, 1023, 1000, 2000);
-        value_servo4 = map(throttle, 0, 1023, 1000, 2000);
+        value_servo3 = map(throttle, 0, 1023, 1000, 2000);
+        value_servo4 = map(rudder,   0, 1023, 1000, 2000);
         
         servo1.writeMicroseconds(value_servo1);
         servo2.writeMicroseconds(value_servo2);
         servo3.writeMicroseconds(value_servo3);
         servo4.writeMicroseconds(value_servo4);
-        
+
         digitalWrite(pin_output_flip,     flip);
         digitalWrite(pin_output_rth,      rth);
         digitalWrite(pin_output_headless, headless);
