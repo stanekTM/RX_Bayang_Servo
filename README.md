@@ -3,7 +3,7 @@ Thanks to the original developers "goebish", "bikemike" and many others ... http
 #
 This RC receiver works with RC transmitters [**OpenAVRc**](https://github.com/Ingwie/OpenAVRc_Dev) in RF SPI mode or [**Multiprotocol**](https://github.com/pascallanger/DIY-Multiprotocol-TX-Module) in serial mode.
 
-Includes 4x servo and 4x logic outputs.
+Includes 4x servo output and 4x logic outputs.
 
 Note: I use (Arduino) ATmega328P 5V/16Mhz and supply VCC only with 3.3V voltage.
 #
