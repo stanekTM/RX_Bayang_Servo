@@ -9,5 +9,3 @@ Note: I use (Arduino) ATmega328P 5V/16Mhz and supply VCC only with 3.3V voltage.
 #
 Later I would like to add telemetry.
 If you have already added the telemetry, feel free to contact me.
-#
-Jiri StanekTM
