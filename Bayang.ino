@@ -110,7 +110,7 @@ void Bayang_bind()
   uint8_t bind_packet[BAYANG_PACKET_SIZE] = {0};
   uint32_t timeout;
   
-  digitalWrite(pin_LED, LOW);
+  digitalWrite(PIN_LED, LOW);
   
   NRF24L01_WriteReg(NRF24L01_05_RF_CH, BAYANG_RF_BIND_CHANNEL);
   
@@ -158,7 +158,7 @@ void Bayang_bind()
   NRF24L01_WriteReg(NRF24L01_07_STATUS, 0x70);
   NRF24L01_FlushRx();
   
-  digitalWrite(pin_LED, HIGH);
+  digitalWrite(PIN_LED, HIGH);
 }
 
 //************************************************************************************************************************************************************************
@@ -227,10 +227,10 @@ void Bayang_receive_packet()
         servo3.writeMicroseconds(value_servo3);
         servo4.writeMicroseconds(value_servo4);
 
-        digitalWrite(pin_output_flip,     flip);
-        digitalWrite(pin_output_rth,      rth);
-        digitalWrite(pin_output_headless, headless);
-        digitalWrite(pin_output_invert,   invert);
+        digitalWrite(PIN_OUT_FLIP, flip);
+        digitalWrite(PIN_OUT_RTH, rth);
+        digitalWrite(PIN_OUT_HEADLESS, headless);
+        digitalWrite(PIN_OUT_INVERT, invert);
       }
       else
       {
