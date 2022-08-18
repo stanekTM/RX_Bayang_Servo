@@ -20,16 +20,16 @@ void Read_Packet(uint8_t *data, uint8_t length)
     uint8_t i;
     CS_off;
     spi_write(0x61); // Read RX payload
-    for (i=0;i<length;i++) {
-        data[i]=spi_read();
+    for (i = 0; i < length; i++) {
+        data[i] = spi_read();
     }
     CS_on;
 }
 
 uint8_t spi_write(uint8_t command) 
 {
-    uint8_t result=0;
-    uint8_t n=8;
+    uint8_t result = 0;
+    uint8_t n = 8;
     SCK_off;
     MOSI_off;
     while(n--) {
@@ -38,9 +38,9 @@ uint8_t spi_write(uint8_t command)
         else
             MOSI_off;
         if(MISO_on)
-            result = (result<<1)|0x01;
+            result = (result << 1) | 0x01;
         else
-            result = result<<1;
+            result = result << 1;
         SCK_on;
         NOP();
         SCK_off;
@@ -66,11 +66,11 @@ uint8_t spi_read()
     uint8_t i;
     MOSI_off;
     NOP();
-    for(i=0;i<8;i++) {
+    for(i = 0; i < 8; i++) {
         if(MISO_on) // if MISO is HIGH
-        result = (result<<1)|0x01;
+        result = (result << 1) | 0x01;
         else
-        result = result<<1;
+        result = result << 1;
         SCK_on;
         NOP();
         SCK_off;
