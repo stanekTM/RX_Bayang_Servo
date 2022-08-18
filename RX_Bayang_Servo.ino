@@ -26,26 +26,26 @@ Servo servo1, servo2, servo3, servo4;
 //pin                       A7
 
 //pins for servos
-#define pin_servo1          2
-#define pin_servo2          3
-#define pin_servo3          4
-#define pin_servo4          5
+#define PIN_SERVO_1         2
+#define PIN_SERVO_2         3
+#define PIN_SERVO_3         4
+#define PIN_SERVO_4         5
 
 //output pins of buttons
-#define pin_output_flip     6
-#define pin_output_rth      7
-#define pin_output_headless 8
-#define pin_output_invert   9
+#define PIN_OUT_FLIP        6
+#define PIN_OUT_RTH         7
+#define PIN_OUT_HEADLESS    8
+#define PIN_OUT_INVERT      9
 
 //pin LED RX on/off
-#define pin_LED             A5
+#define PIN_LED             A5
 
 //SPI Comm.pins with nRF24L01
-//#define pin_CE              A0 //comment if you connect the pin CE to 3.3V
-#define pin_CSN             A1
-#define pin_SCK             A2
-#define pin_MOSI            A3
-#define pin_MISO            A4
+//#define PIN_CE              A0 //comment if you connect the pin CE to 3.3V
+#define PIN_CSN             A1
+#define PIN_SCK             A2
+#define PIN_MOSI            A3
+#define PIN_MISO            A4
 
 // SPI outputs
 #define CE_on    //PORTC |= _BV(0)  //PC0, comment if you connect the pin CE to 3.3V
@@ -71,24 +71,24 @@ void setup()
 //  Serial.begin(9600); //print value ​​on a serial monitor
   Serial.println("Start");
 
-  pinMode(pin_LED, OUTPUT);
-  digitalWrite(pin_LED, LOW); //start LED off
+  pinMode(PIN_LED, OUTPUT);
+  digitalWrite(PIN_LED, LOW); //start LED off
   
-//  pinMode(pin_CE, OUTPUT); //comment if you connect the pin CE to 3.3V
-  pinMode(pin_CSN, OUTPUT);
-  pinMode(pin_SCK, OUTPUT);
-  pinMode(pin_MOSI, OUTPUT);
-  pinMode(pin_MISO, INPUT);
+//  pinMode(PIN_CE, OUTPUT); //comment if you connect the pin CE to 3.3V
+  pinMode(PIN_CSN, OUTPUT);
+  pinMode(PIN_SCK, OUTPUT);
+  pinMode(PIN_MOSI, OUTPUT);
+  pinMode(PIN_MISO, INPUT);
   
-  pinMode(pin_output_flip, OUTPUT);
-  pinMode(pin_output_rth, OUTPUT);
-  pinMode(pin_output_headless, OUTPUT);
-  pinMode(pin_output_invert, OUTPUT);
+  pinMode(PIN_OUT_FLIP, OUTPUT);
+  pinMode(PIN_OUT_RTH, OUTPUT);
+  pinMode(PIN_OUT_HEADLESS, OUTPUT);
+  pinMode(PIN_OUT_INVERT, OUTPUT);
   
-  servo1.attach(pin_servo1);
-  servo2.attach(pin_servo2);
-  servo3.attach(pin_servo3);
-  servo4.attach(pin_servo4);
+  servo1.attach(PIN_SERVO_1);
+  servo2.attach(PIN_SERVO_2);
+  servo3.attach(PIN_SERVO_3);
+  servo4.attach(PIN_SERVO_4);
 }
 
 //************************************************************************************************************************************************************************
