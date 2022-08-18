@@ -28,7 +28,7 @@ void NRF24L01_WriteRegisterMulti(uint8_t address, const uint8_t data[], uint8_t 
     delayMicroseconds(5);
     CS_off;
     spi_write(address | W_REGISTER);
-    for(uint8_t i=0;i<len;i++)
+    for(uint8_t i = 0; i < len; i++)
         spi_write(data[i]);
     CS_on;
     delayMicroseconds(5);
@@ -63,7 +63,7 @@ uint8_t NRF24L01_WritePayload(uint8_t *data, uint8_t length)
     CE_off;
     CS_off;
     spi_write(W_TX_PAYLOAD);
-    for(uint8_t i=0; i<length; i++)
+    for(uint8_t i = 0; i < length; i++)
         spi_write(data[i]);
     CS_on;
     CE_on; // transmit
@@ -75,8 +75,8 @@ uint8_t NRF24L01_ReadPayload(uint8_t *data, uint8_t length)
     uint8_t i;
     CS_off;
     spi_write(R_RX_PAYLOAD); // Read RX payload
-    for (i=0;i<length;i++) {
-        data[i]=spi_read();
+    for (i = 0; i < length; i++) {
+        data[i] = spi_read();
     }
     CS_on;
     return 1;
