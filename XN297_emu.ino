@@ -86,9 +86,9 @@ void XN297_SetRXAddr(const uint8_t* addr, uint8_t len)
     memcpy(buf, addr, len);
     memcpy(xn297_rx_addr, addr, len);
     for (uint8_t i = 0; i < xn297_addr_len; ++i) {
-        buf[i] = xn297_rx_addr[i] ^ xn297_scramble[xn297_addr_len-i-1];
+        buf[i] = xn297_rx_addr[i] ^ xn297_scramble[xn297_addr_len - i - 1];
     }
-    NRF24L01_WriteReg(NRF24L01_03_SETUP_AW, len-2);
+    NRF24L01_WriteReg(NRF24L01_03_SETUP_AW, len - 2);
     NRF24L01_WriteRegisterMulti(NRF24L01_0A_RX_ADDR_P0, buf, 5);
 }
 
@@ -111,7 +111,7 @@ uint8_t XN297_WritePayload(uint8_t* msg, uint8_t len)
         buf[last++] = 0x55;
     }
     for (uint8_t i = 0; i < xn297_addr_len; ++i) {
-        buf[last++] = xn297_tx_addr[xn297_addr_len-i-1] ^ xn297_scramble[i];
+        buf[last++] = xn297_tx_addr[xn297_addr_len - i - 1] ^ xn297_scramble[i];
     }
 
     for (uint8_t i = 0; i < len; ++i) {
@@ -136,8 +136,8 @@ uint8_t XN297_WritePayload(uint8_t* msg, uint8_t len)
 uint8_t XN297_ReadPayload(uint8_t* msg, uint8_t len)
 {
     uint8_t res = NRF24L01_ReadPayload(msg, len);
-    for(uint8_t i=0; i<len; i++)
-        msg[i] = bit_reverse(msg[i]) ^ bit_reverse(xn297_scramble[i+xn297_addr_len]);
+    for(uint8_t i = 0; i < len; i++)
+        msg[i] = bit_reverse(msg[i]) ^ bit_reverse(xn297_scramble[i + xn297_addr_len]);
     return res;
 }
  
