@@ -4,7 +4,6 @@
 */
 
 #include <util/atomic.h>
-#include <EEPROM.h>
 #include "iface_nrf24l01.h"
 #include <Servo.h>
 
@@ -68,7 +67,7 @@ static bool reset = true;
 //************************************************************************************************************************************************************************
 void setup()
 {
-//  Serial.begin(9600); //print value on a serial monitor
+  //Serial.begin(9600); //print value on a serial monitor
   Serial.println("Start");
 
   pinMode(PIN_LED, OUTPUT);
@@ -99,7 +98,7 @@ void loop()
   uint32_t timeout = 0;
   
   //reset/rebind
-  if(reset)
+  if (reset)
   {
     reset = false;
     
@@ -112,6 +111,6 @@ void loop()
   timeout = process_Bayang();
   
   // wait before sending next packet
-  while(micros() < timeout);
+  while (micros() < timeout);
 }
  

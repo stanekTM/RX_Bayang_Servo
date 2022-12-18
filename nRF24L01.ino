@@ -28,7 +28,7 @@ void NRF24L01_WriteRegisterMulti(uint8_t address, const uint8_t data[], uint8_t 
     delayMicroseconds(5);
     CS_off;
     spi_write(address | W_REGISTER);
-    for(uint8_t i = 0; i < len; i++)
+    for (uint8_t i = 0; i < len; i++)
         spi_write(data[i]);
     CS_on;
     delayMicroseconds(5);
@@ -63,7 +63,7 @@ uint8_t NRF24L01_WritePayload(uint8_t *data, uint8_t length)
     CE_off;
     CS_off;
     spi_write(W_TX_PAYLOAD);
-    for(uint8_t i = 0; i < length; i++)
+    for (uint8_t i = 0; i < length; i++)
         spi_write(data[i]);
     CS_on;
     CE_on; // transmit
@@ -101,7 +101,7 @@ uint8_t NRF24L01_Activate(uint8_t code)
 
 void NRF24L01_SetTxRxMode(enum TXRX_State mode)
 {
-    if(mode == TX_EN) {
+    if (mode == TX_EN) {
         CE_off;
         NRF24L01_WriteReg(NRF24L01_07_STATUS, (1 << NRF24L01_07_RX_DR)    //reset the flag(s)
                                             | (1 << NRF24L01_07_TX_DS)

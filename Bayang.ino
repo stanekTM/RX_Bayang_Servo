@@ -45,14 +45,14 @@ void Bayang_init()
   
   uint8_t i;
   
-  for(i = 0; i < BAYANG_ADDRESS_LENGTH; i++)
+  for (i = 0; i < BAYANG_ADDRESS_LENGTH; i++)
   {
     Bayang_rx_tx_addr[i] = random() & 0xff;
   }
   
   Bayang_rf_channels[0] = 0x00;
   
-  for(i = 1; i < BAYANG_RF_NUM_CHANNELS; i++)
+  for (i = 1; i < BAYANG_RF_NUM_CHANNELS; i++)
   {
     Bayang_rf_channels[i] = random() % 0x42;
   }
@@ -69,7 +69,7 @@ void Bayang_init()
     
     uint8_t i;
     
-    for(i = 1; i < BAYANG_RF_NUM_CHANNELS; i++)
+    for (i = 1; i < BAYANG_RF_NUM_CHANNELS; i++)
     {
       Bayang_rf_channels[i] = transmitterID[i] % 0x42;
     }
@@ -114,21 +114,21 @@ void Bayang_bind()
   
   NRF24L01_WriteReg(NRF24L01_05_RF_CH, BAYANG_RF_BIND_CHANNEL);
   
-  while(bind_count < 10)
+  while (bind_count < 10)
   {
   timeout = millis() + 5;
-    while(millis() < timeout)
+    while (millis() < timeout)
     {
       delay(1);
       
       // data received from tx
-      if(NRF24L01_ReadReg(NRF24L01_07_STATUS) & _BV(NRF24L01_07_RX_DR))
+      if (NRF24L01_ReadReg(NRF24L01_07_STATUS) & _BV(NRF24L01_07_RX_DR))
       {
         XN297_ReadPayload(packet, BAYANG_PACKET_SIZE);
         NRF24L01_WriteReg(NRF24L01_07_STATUS, 0x70); // Clear data ready, data sent, and retransmit
         NRF24L01_FlushRx();
         
-        if(packet[0] == 0xA4)
+        if (packet[0] == 0xA4)
         {
           if (0 == bind_count)
           {
@@ -170,7 +170,7 @@ void Bayang_receive_packet()
   static uint16_t failsafe_counter = 0;
 
   // data received from tx
-  if(NRF24L01_ReadReg(NRF24L01_07_STATUS) & _BV(NRF24L01_07_RX_DR))
+  if (NRF24L01_ReadReg(NRF24L01_07_STATUS) & _BV(NRF24L01_07_RX_DR))
   {
     is_bound = true;
     failsafe_counter = 0;
@@ -206,14 +206,14 @@ void Bayang_receive_packet()
         throttle = (packet[8]  & 0x0003) * 256 + packet[9];
         rudder   = (packet[10] & 0x0003) * 256 + packet[11];
 
-//        Serial.println(aileron,  DEC);
-//        Serial.println(elevator, DEC);
-//        Serial.println(throttle, DEC);
-//        Serial.println(rudder,   DEC);
-//        Serial.println(flip,     DEC);
-//        Serial.println(rth,      DEC);
-//        Serial.println(headless, DEC);
-//        Serial.println(invert,   DEC);
+        //Serial.println(aileron,  DEC);
+        //Serial.println(elevator, DEC);
+        //Serial.println(throttle, DEC);
+        //Serial.println(rudder,   DEC);
+        //Serial.println(flip,     DEC);
+        //Serial.println(rth,      DEC);
+        //Serial.println(headless, DEC);
+        //Serial.println(invert,   DEC);
 
         int value_servo1 = 0, value_servo2 = 0, value_servo3 = 0, value_servo4 = 0;
         

@@ -32,12 +32,12 @@ uint8_t spi_write(uint8_t command)
     uint8_t n = 8;
     SCK_off;
     MOSI_off;
-    while(n--) {
-        if(command & 0x80)
+    while (n--) {
+        if (command & 0x80)
             MOSI_on;
         else
             MOSI_off;
-        if(MISO_on)
+        if (MISO_on)
             result = (result << 1) | 0x01;
         else
             result = result << 1;
@@ -66,8 +66,8 @@ uint8_t spi_read()
     uint8_t i;
     MOSI_off;
     NOP();
-    for(i = 0; i < 8; i++) {
-        if(MISO_on) // if MISO is HIGH
+    for (i = 0; i < 8; i++) {
+        if (MISO_on) // if MISO is HIGH
         result = (result << 1) | 0x01;
         else
         result = result << 1;
@@ -86,6 +86,6 @@ uint8_t spi_read_address(uint8_t address)
     spi_write(address);
     result = spi_read();
     CS_on;
-    return(result);
+    return (result);
 }
  

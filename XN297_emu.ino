@@ -136,7 +136,7 @@ uint8_t XN297_WritePayload(uint8_t* msg, uint8_t len)
 uint8_t XN297_ReadPayload(uint8_t* msg, uint8_t len)
 {
     uint8_t res = NRF24L01_ReadPayload(msg, len);
-    for(uint8_t i = 0; i < len; i++)
+    for (uint8_t i = 0; i < len; i++)
         msg[i] = bit_reverse(msg[i]) ^ bit_reverse(xn297_scramble[i + xn297_addr_len]);
     return res;
 }
