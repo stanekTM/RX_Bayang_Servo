@@ -56,23 +56,21 @@ void Bayang_init()
   {
     Bayang_rf_channels[i] = random() % 0x42;
   }
-
+  
 /*
-    //fixed address goebish
-    const uint8_t bind_address[] = {0, 0, 0, 0, 0};
-    
-    memcpy(Bayang_rx_tx_addr, transmitterID, 4);
-    
-    Bayang_rx_tx_addr[4] = Bayang_rx_tx_addr[0] ^ 0xFF;
-    
-    Bayang_rf_channels[0] = 0x00;
-    
-    uint8_t i;
-    
-    for (i = 1; i < BAYANG_RF_NUM_CHANNELS; i++)
-    {
-      Bayang_rf_channels[i] = transmitterID[i] % 0x42;
-    }
+  // fixed address goebish
+  const uint8_t bind_address[] = {0, 0, 0, 0, 0};
+  
+  memcpy(Bayang_rx_tx_addr, transmitterID, 4);
+  
+  Bayang_rx_tx_addr[4] = Bayang_rx_tx_addr[0] ^ 0xFF;
+  
+  Bayang_rf_channels[0] = 0x00;
+  
+  for (uint8_t i = 1; i < BAYANG_RF_NUM_CHANNELS; i++)
+  {
+    Bayang_rf_channels[i] = transmitterID[i] % 0x42;
+  }
 */
 
   NRF24L01_Initialize();
@@ -116,7 +114,8 @@ void Bayang_bind()
   
   while (bind_count < 10)
   {
-  timeout = millis() + 5;
+    timeout = millis() + 5;
+    
     while (millis() < timeout)
     {
       delay(1);
@@ -146,14 +145,14 @@ void Bayang_bind()
     }
   }
   
-  memcpy(Bayang_rx_tx_addr, &  packet[1], 5);
+  memcpy(Bayang_rx_tx_addr,  & packet[1], 5);
   memcpy(Bayang_rf_channels, & packet[6], 4);
   transmitterID[0] = packet[10];
   transmitterID[1] = packet[11];
-
+  
   XN297_SetTXAddr(Bayang_rx_tx_addr, BAYANG_ADDRESS_LENGTH);
   XN297_SetRXAddr(Bayang_rx_tx_addr, BAYANG_ADDRESS_LENGTH);
-
+  
   NRF24L01_WriteReg(NRF24L01_05_RF_CH, Bayang_rf_channels[Bayang_rf_chan++]);
   NRF24L01_WriteReg(NRF24L01_07_STATUS, 0x70);
   NRF24L01_FlushRx();
@@ -168,7 +167,7 @@ void Bayang_receive_packet()
 {
   static bool is_bound = false;
   static uint16_t failsafe_counter = 0;
-
+  
   // data received from tx
   if (NRF24L01_ReadReg(NRF24L01_07_STATUS) & _BV(NRF24L01_07_RX_DR))
   {
@@ -181,11 +180,11 @@ void Bayang_receive_packet()
     
     XN297_ReadPayload(packet, BAYANG_PACKET_SIZE);
     
-    if (packet[0] == 0xA4) //0xA4, 0xA3 telemetry
+    if (packet[0] == 0xA4) // 0xA4, 0xA3 telemetry
     {
       Serial.println("bind packet");
     }
-    else if (packet[0] == 0xA5) //0xA5
+    else if (packet[0] == 0xA5) // 0xA5
     {
       // data packet
       for (int i = 0; i < 14; i++)
@@ -205,7 +204,7 @@ void Bayang_receive_packet()
         elevator = (packet[6]  & 0x0003) * 256 + packet[7];
         throttle = (packet[8]  & 0x0003) * 256 + packet[9];
         rudder   = (packet[10] & 0x0003) * 256 + packet[11];
-
+        
         //Serial.println(aileron,  DEC);
         //Serial.println(elevator, DEC);
         //Serial.println(throttle, DEC);
@@ -214,7 +213,7 @@ void Bayang_receive_packet()
         //Serial.println(rth,      DEC);
         //Serial.println(headless, DEC);
         //Serial.println(invert,   DEC);
-
+        
         int value_servo1 = 0, value_servo2 = 0, value_servo3 = 0, value_servo4 = 0;
         
         value_servo1 = map(aileron,  0, 1023, 1000, 2000);
@@ -226,7 +225,7 @@ void Bayang_receive_packet()
         servo2.writeMicroseconds(value_servo2);
         servo3.writeMicroseconds(value_servo3);
         servo4.writeMicroseconds(value_servo4);
-
+        
         digitalWrite(PIN_OUT_FLIP, flip);
         digitalWrite(PIN_OUT_RTH, rth);
         digitalWrite(PIN_OUT_HEADLESS, headless);
@@ -257,10 +256,10 @@ void Bayang_receive_packet()
       failsafe_counter = 0;
       
       // neutral servo position
-      servo1.write(90);
-      servo2.write(90);
-      servo3.write(90);
-      servo4.write(90);
+      servo1.writeMicroseconds(1500);
+      servo2.writeMicroseconds(1500);
+      servo3.writeMicroseconds(1500);
+      servo4.writeMicroseconds(1500);
       
       // enable rebinding:
       extern bool reset;
