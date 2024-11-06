@@ -1,5 +1,5 @@
 # RC receiver with "Bayang" protocol
-This RC receiver works with RC transmitters [**OpenAVRc**](https://github.com/Ingwie/OpenAVRc_Dev) or [**Multiprotocol**](https://github.com/pascallanger/DIY-Multiprotocol-TX-Module).
+The RC receiver works with [**OpenAVRc**](https://github.com/Ingwie/OpenAVRc_Dev) oand [**Multiprotocol**](https://github.com/pascallanger/DIY-Multiprotocol-TX-Module).
 
 Includes 4x servo output and 4x logic output.
 
