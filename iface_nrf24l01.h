@@ -48,7 +48,7 @@ enum
   NRF24L01_1C_DYNPD       = 0x1C,
   NRF24L01_1D_FEATURE     = 0x1D,
   
-  //Instructions
+  // Instructions
   NRF24L01_61_RX_PAYLOAD  = 0x61,
   NRF24L01_A0_TX_PAYLOAD  = 0xA0,
   NRF24L01_E1_FLUSH_TX    = 0xE1,

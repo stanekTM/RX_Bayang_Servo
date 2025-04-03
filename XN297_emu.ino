@@ -74,7 +74,7 @@ void XN297_SetTXAddr(const uint8_t* addr, uint8_t len)
   if (len > 5) len = 5;
   if (len < 3) len = 3;
   
-  uint8_t buf[] = { 0x55, 0x0F, 0x71, 0x0C, 0x00 }; // bytes for XN297 preamble 0xC710F55 (28 bit)
+  uint8_t buf[] = { 0x55, 0x0F, 0x71, 0x0C, 0x00 }; // Bytes for XN297 preamble 0xC710F55 (28 bit)
   
   xn297_addr_len = len;
   
@@ -143,7 +143,7 @@ uint8_t XN297_WritePayload(uint8_t* msg, uint8_t len)
     
     for (uint8_t i = 0; i < len; ++i)
     {
-      // bit-reverse bytes in packet
+      // Bit-reverse bytes in packet
       uint8_t b_out = bit_reverse(msg[i]);
       
       buf[last++] = b_out ^ xn297_scramble[xn297_addr_len+i];

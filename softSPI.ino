@@ -66,7 +66,7 @@ void spi_write_address(uint8_t address, uint8_t data)
   CS_on;
 }
 
-// read one byte from MISO
+// Read one byte from MISO
 uint8_t spi_read()
 {
   uint8_t result = 0;
@@ -77,7 +77,7 @@ uint8_t spi_read()
   
   for (i = 0; i < 8; i++)
   {
-    if (MISO_on) // if MISO is HIGH
+    if (MISO_on) // If MISO is HIGH
     result = (result << 1) | 0x01;
     else
     result = result << 1;
