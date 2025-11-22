@@ -1,17 +1,17 @@
-
-//************************************************************************************************************************
-// RC receiver with "Bayang" protocol
-//************************************
-// ... works with OpenAVRc https://github.com/Ingwie/OpenAVRc_Dev
-// and Multiprotocol https://github.com/pascallanger/DIY-Multiprotocol-TX-Module
-//
-// Thanks to the original developers "goebish" and "bikemike" https://github.com/bikemike/nrf24_multipro/tree/rx_mode
-//************************************************************************************************************************
-
+/*
+  ******************************************************************************************************************
+  RC receiver with "Bayang" protocol
+  **********************************
+  ... works with OpenAVRc https://github.com/Ingwie/OpenAVRc_Dev
+  and Multiprotocol https://github.com/pascallanger/DIY-Multiprotocol-TX-Module
+  
+  Thanks to the original developers "goebish" and "bikemike" https://github.com/bikemike/nrf24_multipro/tree/rx_mode
+  ******************************************************************************************************************
+*/
 
 #include <util/atomic.h>
 #include "iface_nrf24l01.h"
-#include <Servo.h>
+#include <Servo.h> // v1.2.2
 
 Servo servo1, servo2, servo3, servo4;
 
