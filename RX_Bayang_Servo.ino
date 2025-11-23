@@ -9,9 +9,9 @@
   ******************************************************************************************************************
 */
 
-#include <util/atomic.h>
+#include "util/atomic.h"
 #include "iface_nrf24l01.h"
-#include <Servo.h> // v1.2.2
+#include "Servo.h" // v1.2.2
 
 Servo servo1, servo2, servo3, servo4;
 
