@@ -16,7 +16,7 @@
 #ifndef _IFACE_NRF24L01_H_
 #define _IFACE_NRF24L01_H_
 
-#include "Arduino.h"
+#include <Arduino.h>
 
 // Register map
 enum
