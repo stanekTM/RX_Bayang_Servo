@@ -68,7 +68,7 @@ uint8_t NRF24L01_WritePayload(uint8_t* data, uint8_t length)
   for (uint8_t i = 0; i < length; i++)
   spi_write(data[i]);
   CS_on;
-  CE_on; // transmit
+  CE_on; // Transmit
   return 1;
 }
 

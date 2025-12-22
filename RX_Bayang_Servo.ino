@@ -57,7 +57,7 @@ Servo servo1, servo2, servo3, servo4;
 #define PIN_SERVO_3         4
 #define PIN_SERVO_4         5
 
-// Output pins of buttons
+// TX button function output pins
 #define PIN_OUT_FLIP        6
 #define PIN_OUT_RTH         7
 #define PIN_OUT_HEADLESS    8
@@ -66,7 +66,7 @@ Servo servo1, servo2, servo3, servo4;
 // Pin LED RX on/off
 #define PIN_LED             A5
 
-// SPI Comm.pins with nRF24L01
+// SPI pins for nRF24L01+
 //#define PIN_CE              A0 // Comment if you connect the pin CE to 3.3V
 #define PIN_CSN             A1
 #define PIN_SCK             A2
