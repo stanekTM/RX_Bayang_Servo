@@ -3,5 +3,3 @@
 
 Includes nRF24L01+ transceiver and ATmega328P processor for 4x servo outputs and 4x logic outputs.
 The code is Arduino.
-
-Thanks to the original developers "goebish" and ["bikemike"](https://github.com/bikemike/nrf24_multipro/tree/rx_mode).
