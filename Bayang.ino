@@ -214,17 +214,17 @@ void Bayang_receive_packet()
         //Serial.println(headless, DEC);
         //Serial.println(invert,   DEC);
         
-        int value_servo1 = 0, value_servo2 = 0, value_servo3 = 0, value_servo4 = 0;
+        int servo1_val = 0, servo2_val = 0, servo3_val = 0, servo4_val = 0;
         
-        value_servo1 = map(aileron,  0, 1023, 1000, 2000);
-        value_servo2 = map(elevator, 0, 1023, 1000, 2000);
-        value_servo3 = map(throttle, 0, 1023, 1000, 2000);
-        value_servo4 = map(rudder,   0, 1023, 1000, 2000);
+        servo1_val = map(aileron,  0, 1023, 1000, 2000);
+        servo2_val = map(elevator, 0, 1023, 1000, 2000);
+        servo3_val = map(throttle, 0, 1023, 1000, 2000);
+        servo4_val = map(rudder,   0, 1023, 1000, 2000);
         
-        servo1.writeMicroseconds(value_servo1);
-        servo2.writeMicroseconds(value_servo2);
-        servo3.writeMicroseconds(value_servo3);
-        servo4.writeMicroseconds(value_servo4);
+        servo1.writeMicroseconds(servo1_val);
+        servo2.writeMicroseconds(servo2_val);
+        servo3.writeMicroseconds(servo3_val);
+        servo4.writeMicroseconds(servo4_val);
         
         digitalWrite(PIN_OUT_FLIP, flip);
         digitalWrite(PIN_OUT_RTH, rth);
