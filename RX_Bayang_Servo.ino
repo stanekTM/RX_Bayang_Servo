@@ -13,7 +13,7 @@
 #include "iface_nrf24l01.h"
 #include <Servo.h> // v1.2.2
 
-Servo servo1, servo2, servo3, servo4;
+Servo servo[4];
 
 #define RF_POWER TX_POWER_5mW
 //#define RF_POWER TX_POWER_20mW
@@ -51,11 +51,8 @@ Servo servo1, servo2, servo3, servo4;
 // ADC6   -    A6
 // ADC7   -    A7
 
-// Pins for servos
-#define PIN_SERVO_1         2
-#define PIN_SERVO_2         3
-#define PIN_SERVO_3         4
-#define PIN_SERVO_4         5
+// Pins for servos (possible combination, max 4)
+const byte pins_servo[] = {2, 3, 4, 5};
 
 // TX button function output pins
 #define PIN_OUT_FLIP        6
@@ -85,13 +82,9 @@ Servo servo1, servo2, servo3, servo4;
 // SPI input
 #define  MISO_on (PINC & _BV(4))  // PC4
 
-uint8_t transmitterID[4];
-uint8_t packet[32];
-static bool reset = true;
-
-//************************************************************************************************************************
-//************************************************************************************************************************
-//************************************************************************************************************************
+//*********************************************************************************************************************
+// Program setup
+//*********************************************************************************************************************
 void setup()
 {
   //Serial.begin(9600);
@@ -111,15 +104,17 @@ void setup()
   pinMode(PIN_OUT_HEADLESS, OUTPUT);
   pinMode(PIN_OUT_INVERT, OUTPUT);
   
-  servo1.attach(PIN_SERVO_1);
-  servo2.attach(PIN_SERVO_2);
-  servo3.attach(PIN_SERVO_3);
-  servo4.attach(PIN_SERVO_4);
+  servo[0].attach(pins_servo[0]);
+  servo[1].attach(pins_servo[1]);
+  servo[2].attach(pins_servo[2]);
+  servo[3].attach(pins_servo[3]);
 }
 
-//************************************************************************************************************************
-//************************************************************************************************************************
-//************************************************************************************************************************
+//*********************************************************************************************************************
+// Program loop
+//*********************************************************************************************************************
+static bool reset = true;
+
 void loop()
 {
   uint32_t timeout = 0;
@@ -135,7 +130,7 @@ void loop()
     Bayang_bind();
   }
   
-  timeout = process_Bayang();
+  timeout = Bayang_process();
   
   // Wait before sending next packet
   while (micros() < timeout);
