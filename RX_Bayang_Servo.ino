@@ -51,7 +51,7 @@ Servo servo[4];
 // ADC6   -    A6
 // ADC7   -    A7
 
-// Pins for servos (possible combination, max 4)
+// Pins for servos (possible combination, max. 4)
 const byte pins_servo[] = {2, 3, 4, 5};
 
 // TX button function output pins
