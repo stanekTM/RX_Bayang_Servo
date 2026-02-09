@@ -1,5 +1,10 @@
-# RC receiver with "Bayang" protocol
-... works with [**OpenAVRc**](https://github.com/Ingwie/OpenAVRc_Dev) and [**Multiprotocol**](https://github.com/pascallanger/DIY-Multiprotocol-TX-Module).
+## RC receiver with "Bayang" protocol
+Hardware includes nRF24L01+ transceiver, ATmega328P/PB processor.
 
-Includes nRF24L01+ transceiver and ATmega328P processor for 4x servo outputs and 4x logic outputs.
+The firmware includes 4 servo outputs and 4 logic outputs.
+
 The code is Arduino.
+
+### Works with RC transmitters
+[**OpenAVRc**](https://github.com/Ingwie/OpenAVRc_Dev)
+[**Multiprotocol**](https://github.com/pascallanger/DIY-Multiprotocol-TX-Module).
