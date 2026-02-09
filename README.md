@@ -6,4 +6,5 @@ The firmware includes 4 servo outputs and 4 logic outputs.
 The code is Arduino.
 
 ### Works with RC transmitters
-[**OpenAVRc**](https://github.com/Ingwie/OpenAVRc_Dev) and [**Multiprotocol**](https://github.com/pascallanger/DIY-Multiprotocol-TX-Module)
+[**OpenAVRc**](https://github.com/Ingwie/OpenAVRc_Dev)
+and [**Multiprotocol**](https://github.com/pascallanger/DIY-Multiprotocol-TX-Module)
