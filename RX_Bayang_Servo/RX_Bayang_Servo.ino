@@ -26,9 +26,9 @@ Servo servo[4];
 //#define RF_POWER TX_POWER_158mW
 
 // ATmega328P/PB pins overview
-// PD0 - D0   PWM  328PB
-// PD1 - D1   PWM  328PB
-// PD2 - D2   PWM  328PB
+// PD0 - D0   PWM  ATmega328PB
+// PD1 - D1   PWM  ATmega328PB
+// PD2 - D2   PWM  ATmega328PB
 // PD3 - D3   PWM
 // PD4 - D4
 // PD5 - D5   PWM
@@ -49,15 +49,15 @@ Servo servo[4];
 // PB6 - D20        XTAL1
 // PB7 - D21        XTAL2
 // PC6 - D22        RESET
-// PE0 - D23        328PB
-// PE1 - D24        328PB
-// PE2 - D25 / A6   328PB
-// PE3 - D26 / A7   328PB
+// PE0 - D23        ATmega328PB
+// PE1 - D24        ATmega328PB
+// PE2 - D25 / A6   ATmega328PB
+// PE3 - D26 / A7   ATmega328PB
 // ADC6   -    A6
 // ADC7   -    A7
 
 // Pins for servos (possible combination, max. 4)
-const byte pins_servo[] = {2, 3, 4, 5};
+const byte pins_servo[4] = {2, 3, 4, 5};
 
 // TX button function output pins
 #define PIN_OUT_FLIP        6
@@ -93,10 +93,9 @@ const byte pins_servo[] = {2, 3, 4, 5};
 void setup()
 {
   //Serial.begin(9600);
-  Serial.println("Start");
-
+  
   pinMode(PIN_LED, OUTPUT);
-  digitalWrite(PIN_LED, LOW); // Start LED off
+  digitalWrite(PIN_LED, LOW);
   
   //pinMode(PIN_CE, OUTPUT); // Comment if you connect the pin CE to 3.3V
   pinMode(PIN_CSN, OUTPUT);

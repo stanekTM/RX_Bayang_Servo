@@ -46,23 +46,21 @@ void Bayang_init()
 {
   const uint8_t bind_address[BAYANG_ADDRESS_LENGTH] = {0, 0, 0, 0, 0};
   
-  uint8_t i;
-  
-  for (i = 0; i < BAYANG_ADDRESS_LENGTH; i++)
+  for (uint8_t i = 0; i < BAYANG_ADDRESS_LENGTH; i++)
   {
     Bayang_rx_tx_addr[i] = random() & 0xff;
   }
   
   Bayang_rf_channels[0] = 0x00;
   
-  for (i = 1; i < BAYANG_RF_NUM_CHANNELS; i++)
+  for (uint8_t i = 1; i < BAYANG_RF_NUM_CHANNELS; i++)
   {
     Bayang_rf_channels[i] = random() % 0x42;
   }
   
 /*
-  // Fixed address goebish
-  const uint8_t bind_address[] = {0, 0, 0, 0, 0};
+  // Fixed address
+  const uint8_t bind_address[BAYANG_ADDRESS_LENGTH] = {0, 0, 0, 0, 0};
   
   memcpy(Bayang_rx_tx_addr, transmitterID, 4);
   
@@ -135,12 +133,12 @@ void Bayang_bind()
           if (0 == bind_count)
           {
             memcpy(bind_packet, packet, BAYANG_PACKET_SIZE);
-            ++bind_count;
+            bind_count++;
           }
           else
           {
             if (0 == memcmp(bind_packet, packet, BAYANG_PACKET_SIZE))
-            ++bind_count;
+            bind_count++;
           }
         }
         break;
@@ -148,8 +146,8 @@ void Bayang_bind()
     }
   }
   
-  memcpy(Bayang_rx_tx_addr,  & packet[1], 5);
-  memcpy(Bayang_rf_channels, & packet[6], 4);
+  memcpy(Bayang_rx_tx_addr,  &packet[1], 5);
+  memcpy(Bayang_rf_channels, &packet[6], 4);
   transmitterID[0] = packet[10];
   transmitterID[1] = packet[11];
   
@@ -170,16 +168,14 @@ void Bayang_receive_packet()
 {
   static bool is_bound = false;
   static uint16_t failsafe_counter = 0;
+  int sum = 0;
+  uint16_t aileron, elevator, rudder, throttle, flip, rth, headless, invert;
   
   // Data received from tx
   if (NRF24L01_ReadReg(NRF24L01_07_STATUS) & _BV(NRF24L01_07_RX_DR))
   {
     is_bound = true;
     failsafe_counter = 0;
-    
-    int sum = 0;
-    
-    uint16_t aileron, elevator, rudder, throttle, flip, rth, headless, invert;
     
     XN297_ReadPayload(packet, BAYANG_PACKET_SIZE);
     
@@ -190,7 +186,7 @@ void Bayang_receive_packet()
     else if (packet[0] == 0xA5) // 0xA5
     {
       // Data packet
-      for (int i = 0; i < 14; i++)
+      for (uint8_t i = 0; i < 14; i++)
       {
         sum += packet[i];
       }
@@ -217,10 +213,10 @@ void Bayang_receive_packet()
         //Serial.println(headless, DEC);
         //Serial.println(invert,   DEC);
         
-        int servo1_val = map(aileron,  0, 1023, 1000, 2000);
-        int servo2_val = map(elevator, 0, 1023, 1000, 2000);
-        int servo3_val = map(throttle, 0, 1023, 1000, 2000);
-        int servo4_val = map(rudder,   0, 1023, 1000, 2000);
+        uint16_t servo1_val = map(aileron,  0, 1023, 1000, 2000);
+        uint16_t servo2_val = map(elevator, 0, 1023, 1000, 2000);
+        uint16_t servo3_val = map(throttle, 0, 1023, 1000, 2000);
+        uint16_t servo4_val = map(rudder,   0, 1023, 1000, 2000);
         
         servo[0].writeMicroseconds(servo1_val);
         servo[1].writeMicroseconds(servo2_val);
@@ -249,7 +245,7 @@ void Bayang_receive_packet()
   }
   else if (is_bound)
   {
-    ++failsafe_counter;
+    failsafe_counter++;
     
     if (failsafe_counter > 1000)
     {
