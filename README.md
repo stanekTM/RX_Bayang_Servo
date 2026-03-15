@@ -7,4 +7,4 @@ The code is Arduino.
 
 ### Works with RC transmitters
 [**OpenAVRc**](https://github.com/Ingwie/OpenAVRc_Dev)
-and [**Multiprotocol**](https://github.com/pascallanger/DIY-Multiprotocol-TX-Module)
+and [**Multiprotocol TX**](https://github.com/pascallanger/DIY-Multiprotocol-TX-Module)
